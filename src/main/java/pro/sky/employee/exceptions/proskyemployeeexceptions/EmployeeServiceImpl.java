@@ -7,7 +7,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final Employee[] employee = new Employee[5];
 
     @Override
-    public String addEmployee(String firstName, String lastName) {
+    public Employee addEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         for (int i = 0; i < this.employee.length; i++) {
             if (this.employee[i] != null && employee.equals(this.employee[i])) {
@@ -26,11 +26,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new TheArrayOfEmployeesIsFullException();
         }
 
-        return employee.toString();
+        return employee;
     }
 
     @Override
-    public String deleteEmployee(String firstName, String lastName) {
+    public Employee deleteEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         boolean deleted = false;
         for (int i = 0; i < this.employee.length; i++) {
@@ -43,12 +43,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!deleted) {
             throw new EmployeeNotFoundException();
         }
-        return employee.toString();
+        return employee;
 
     }
 
     @Override
-    public String findEmployee(String firstName, String lastName) {
+    public Employee findEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         boolean deleted = false;
         for (int i = 0; i < this.employee.length; i++) {
@@ -60,7 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!deleted) {
             throw new EmployeeNotFoundException();
         }
-        return employee.toString();
+        return employee;
     }
 
 }
